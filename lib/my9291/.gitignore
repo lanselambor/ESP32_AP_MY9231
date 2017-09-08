@@ -1,0 +1,11 @@
+.pio*
+*.gch
+test
+.pioenvs
+.piolibdeps
+.clang_complete
+.gcc-flags.json
+credentials.h
+lib
+.travis.yml
+.vscode/c_cpp_properties.json
