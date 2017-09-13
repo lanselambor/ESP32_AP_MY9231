@@ -1,3 +1,4 @@
+
 #include <WiFi.h>
 #include "my9291.h"
 #include <stdlib.h>
@@ -63,10 +64,9 @@ void pirDetectLoop() {
     if(state == 0 ) {
         if (millis() - pirDetectTStart > 100) {
             pirDetectTStart = millis();
-            state =  getPIRState();
-            Serial.print("PIR Sensor: ");
-            Serial.println(getPIRState());
+            state =  getPIRState();            
             if(state == 1) {
+                Serial.println("PIR Sensor trigled...");
                 // Handle pirDetection
                 handleLEDColor(100,100,100);
                 lightTStart = millis();
@@ -76,6 +76,7 @@ void pirDetectLoop() {
         if(millis() - lightTStart > 5000) {
             state= 0;
             // Handle pirDetection
+            Serial.println("Close LED...");
             handleLEDColor(0,0,0);
         }
     }    
@@ -86,6 +87,7 @@ void cleanBuffer(char *buf, int num) {
         buf[i] = '\0';
     }
 }
+
 
 void setup() {
     Serial.begin(115200);
@@ -100,6 +102,7 @@ void setup() {
     Serial.println(WiFi.softAPIP());
     server.begin();
 }
+
 
 void loop() {
     WiFiClient client = server.available();   // listen for incoming clients

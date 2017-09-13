@@ -29,12 +29,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
         void os_delay_us(unsigned int);
     }
 
-#elif ARDUINO_ARCH_AVR
+#elif ARDUINO_ARCH_AVR || ARDUINO_ARCH_ESP32
 
     #define os_delay_us delayMicroseconds
 
-#else
-    #define os_delay_us delayMicroseconds
 #endif
 
 
